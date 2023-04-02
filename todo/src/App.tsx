@@ -1,6 +1,10 @@
+import React, { useState } from "react";
 import "./App.css";
+import { InputField } from "./components/InputField";
+import { Todo } from "./components/model";
 
-function App() {
+// React functional component
+const App: React.FC = () => {
   // let str: string;
   // let num: number;
   // let loading: boolean;
@@ -31,7 +35,24 @@ function App() {
   //   password: string;
   // }
 
-  return <div></div>;
-}
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Todo[]>([]);
+  console.log({ todos });
+  const onAddTodo = (event: React.FormEvent) => {
+    event.preventDefault();
+    setTodo("");
+    setTodos((prevState) => [
+      ...prevState,
+      { todo, id: Math.random(), done: false },
+    ]);
+  };
+
+  return (
+    <div className="App">
+      <span className="heading">Taskify</span>
+      <InputField todo={todo} setTodo={setTodo} onAddTodo={onAddTodo} />
+    </div>
+  );
+};
 
 export default App;
