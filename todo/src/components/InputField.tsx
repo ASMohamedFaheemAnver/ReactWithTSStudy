@@ -7,7 +7,11 @@ interface Props {
   onAddTodo: (event: React.FormEvent) => void;
 }
 
-export const InputField = ({ todo, setTodo, onAddTodo }: Props) => {
+export const InputField: React.FC<Props> = ({
+  todo,
+  setTodo,
+  onAddTodo,
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <form

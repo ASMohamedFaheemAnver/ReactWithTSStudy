@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import { InputField } from "./components/InputField";
 import { Todo } from "./components/model";
+import TodoList from "./components/TodoList";
 
 // React functional component
 const App: React.FC = () => {
@@ -37,7 +38,7 @@ const App: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  console.log({ todos });
+
   const onAddTodo = (event: React.FormEvent) => {
     event.preventDefault();
     setTodo("");
@@ -51,6 +52,7 @@ const App: React.FC = () => {
     <div className="App">
       <span className="heading">Taskify</span>
       <InputField todo={todo} setTodo={setTodo} onAddTodo={onAddTodo} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 };
